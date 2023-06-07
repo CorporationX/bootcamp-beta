@@ -1,6 +1,7 @@
 package ru.faang.school.task_1;
 
 import ru.faang.school.task_1.creatures.Creature;
+
 import java.util.List;
 import java.util.Random;
 
@@ -8,13 +9,15 @@ public class Battlefield {
 
     private Hero attackingHero;
     private Hero defendingHero;
+    private Random random;
 
     public Battlefield(Hero attackingHero, Hero defendingHero) {
         this.attackingHero = attackingHero;
         this.defendingHero = defendingHero;
+        this.random = new Random();
     }
 
-    Hero battle() {
+    public Hero battle() {
         while (true) {
             List<Creature> attackingArmy = attackingHero.getArmy();
             List<Creature> defendingArmy = defendingHero.getArmy();
@@ -33,7 +36,6 @@ public class Battlefield {
     }
 
     private Creature getRandomCreature(List<Creature> army) {
-        Random random = new Random();
         int index = random.nextInt(army.size());
 
         return army.get(index);

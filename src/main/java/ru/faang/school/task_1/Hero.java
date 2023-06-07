@@ -2,6 +2,7 @@ package ru.faang.school.task_1;
 
 import lombok.Getter;
 import ru.faang.school.task_1.creatures.Creature;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.Map;
 
 public class Hero {
 
-    private @Getter String name;
+    @Getter
+    private String name;
     private String faction;
     private int experience;
     private int level;
@@ -23,12 +25,12 @@ public class Hero {
         this.army = new HashMap<>();
     }
 
-    void addCreature(Creature creature, int quantity) {
+    public void addCreature(Creature creature, int quantity) {
         army.put(creature, army.getOrDefault(creature, 0) + quantity);
         creature.setQuantity(creature.getQuantity() + quantity);
     }
 
-    boolean removeCreature(Creature creature, int quantity) {
+    public boolean removeCreature(Creature creature, int quantity) {
         if (!army.containsKey(creature)) {
             return false;
         }
@@ -45,7 +47,7 @@ public class Hero {
         return true;
     }
 
-    List<Creature> getArmy() {
+    public List<Creature> getArmy() {
         List<Creature> armyList = new ArrayList<>();
 
         for (Map.Entry<Creature, Integer> entry : army.entrySet()) {
