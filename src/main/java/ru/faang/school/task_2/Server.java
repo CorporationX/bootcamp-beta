@@ -1,7 +1,6 @@
 package ru.faang.school.task_2;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public class Server {
@@ -10,9 +9,8 @@ public class Server {
     private double maxLoad;
     private double energyConsumption;
 
-    public Server(double maxLoad, double energyConsumption, double load) {
+    public Server(double maxLoad) {
         this.maxLoad = maxLoad;
-        this.energyConsumption = energyConsumption * (load / 2);
     }
 
     public double getFreeResources() {
@@ -24,11 +22,11 @@ public class Server {
             this.load = load;
             updateEnergyConsumption();
         } else {
-            System.out.println("There is not enough resources on this server");
+            throw new IllegalArgumentException("There is not enough space in the server to accommodate the load");
         }
     }
 
     private void updateEnergyConsumption() {
-        this.energyConsumption = energyConsumption * (load / 2);
+        this.energyConsumption += (load / 2);
     }
 }

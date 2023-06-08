@@ -1,11 +1,15 @@
 package ru.faang.school.task_2;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Getter
+@Setter
 public class DataCenter {
 
     private List<Server> servers;
@@ -30,7 +34,6 @@ public class DataCenter {
         }
 
         return totalEnergyConsumption;
-
     }
 
     public double getTotalServersFreeCapacity() {
@@ -55,5 +58,19 @@ public class DataCenter {
         }
 
         return totalMaxLoad;
+    }
+
+    public void sortServersByMaxLoad() {
+        Collections.sort(servers, Comparator.comparingDouble(Server::getMaxLoad));
+    }
+
+    public void sortServersByEnergyConsumption() {
+        Collections.sort(servers, Comparator.comparingDouble(Server::getMaxLoad));
+    }
+
+    public void setServersLoadToZero() {
+        for (Server server : servers) {
+            server.setLoad(0);
+        }
     }
 }
