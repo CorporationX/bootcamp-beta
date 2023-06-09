@@ -2,6 +2,7 @@ package ru.faang.school.task_2;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -10,14 +11,14 @@ class ServerTest {
     private Server server;
 
     @BeforeEach
-    void setServer() {
+    void setUp() {
         server = new Server(100.0);
     }
 
 
     @Test
     void setLoadMethod_trowsIllegalArgumentException_IfLoadIsBiggerThanMaxLoad() {
-        assertThrows(IllegalArgumentException.class, ()->server.setLoad(120.0));
+        assertThrows(IllegalArgumentException.class, () -> server.setLoad(120.0));
     }
 
     @Test

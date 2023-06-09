@@ -34,8 +34,14 @@ public class DataCenterService implements OptimizationStrategy {
 
             double serverFreeResources = server.getFreeResources();
             if (serverFreeResources != 0) {
-                server.setLoad(server.getLoad() + serverFreeResources);
-                neededResources -= serverFreeResources;
+
+                if (neededResources >= serverFreeResources) {
+                    server.setLoad(server.getLoad() + serverFreeResources);
+                    neededResources -= serverFreeResources;
+                } else if (neededResources < serverFreeResources) {
+                    server.setLoad(server.getLoad() + neededResources);
+                    neededResources = 0;
+                }
             }
         }
 
