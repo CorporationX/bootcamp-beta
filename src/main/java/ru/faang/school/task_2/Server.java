@@ -21,6 +21,8 @@ public class Server {
         if (load <= maxLoad) {
             this.load = load;
             updateEnergyConsumption();
+        }else{
+            throw new IllegalArgumentException("There is not enough space in the server to accommodate the load");
         }
     }
 
