@@ -21,16 +21,14 @@ public class Server {
         if (load <= maxLoad) {
             this.load = load;
             updateEnergyConsumption();
-        } else {
-            throw new IllegalArgumentException("There is not enough space in the server to accommodate the load");
         }
     }
 
     private void updateEnergyConsumption() {
-        if (load > maxLoad / 2){
-            this.energyConsumption += load;
-        }else {
-            this.energyConsumption += (load / 2);
+        if (load >= maxLoad / 2) {
+            this.energyConsumption = load;
+        } else {
+            this.energyConsumption = (load / 2);
         }
     }
 }
