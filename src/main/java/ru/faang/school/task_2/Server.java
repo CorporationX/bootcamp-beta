@@ -27,6 +27,10 @@ public class Server {
     }
 
     private void updateEnergyConsumption() {
-        this.energyConsumption += (load / 2);
+        if (load > maxLoad / 2){
+            this.energyConsumption += load;
+        }else {
+            this.energyConsumption += (load / 2);
+        }
     }
 }
