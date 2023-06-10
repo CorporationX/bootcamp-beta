@@ -12,4 +12,9 @@ public class House {
         this.name = name;
         this.sigil = sigil;
     }
+
+    @Override
+    public String toString() {
+        return "House of " + name + ", sigil " + sigil;
+    }
 }
