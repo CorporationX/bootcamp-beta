@@ -4,23 +4,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
-        List<Student> studentList = new ArrayList<>();
+        List<Student> students = new ArrayList<>();
 
-        addStudent(studentList, "John", "Faculty1", 1);
-        addStudent(studentList, "Emma", "Faculty2", 2);
-        addStudent(studentList, "Michael", "Faculty2", 2);
-        addStudent(studentList, "Sophia", "Faculty3", 3);
-        addStudent(studentList, "Daniel", "Faculty1", 1);
+        addStudent(students, "John", "Faculty1", 1);
+        addStudent(students, "Emma", "Faculty2", 2);
+        addStudent(students, "Michael", "Faculty2", 2);
+        addStudent(students, "Sophia", "Faculty3", 3);
+        addStudent(students, "Daniel", "Faculty1", 1);
 
-        removeStudent(studentList, "Sophia", "Faculty3", 3);
+        removeStudent(students, "Sophia", "Faculty3", 3);
 
-        List<Student> searchResult = findStudentsByFacultyAndYear(studentList, "Faculty1", 1);
+        List<Student> searchResult = findStudentsByFacultyAndYear(students, "Faculty1", 1);
         printStudentList(searchResult);
 
-        Map<String, Map<Integer, List<Student>>> groupedStudents = groupStudentsByFacultyAndYear(studentList);
+        Map<String, Map<Integer, List<Student>>> groupedStudents = groupStudentsByFacultyAndYear(students);
         printGroupedStudents(groupedStudents);
     }
 
@@ -30,10 +31,14 @@ public class Main {
         studentList.add(student);
     }
 
-    public static void removeStudent(List<Student> studentList, String name, String faculty, int year) {
-        studentList.removeIf(student -> student.getName().equals(name)
-                && student.getFaculty().equals(faculty)
-                && student.getYear() == year);
+    public static void removeStudent(List<Student> students, String name, String faculty, int year) {
+        students.removeIf(getFilter(name, faculty, year));
+    }
+
+    private static Predicate<Student> getFilter(String name, String faculty, int year) {
+        return student -> student.getName().equalsIgnoreCase(name)
+                && student.getFaculty().equalsIgnoreCase(faculty)
+                && student.getYear() == year;
     }
 
 
@@ -47,9 +52,9 @@ public class Main {
         return result;
     }
 
-    public static void printStudentList(List<Student> studentList) {
-        if (!studentList.isEmpty()) {
-            for (Student student : studentList) {
+    public static void printStudentList(List<Student> students) {
+        if (!students.isEmpty()) {
+            for (Student student : students) {
                 System.out.println("Name: " + student.getName() + ", Faculty: " + student.getFaculty() +
                         ", Year: " + student.getYear());
             }
