@@ -3,11 +3,7 @@ package ru.faang.school.hashmap.task_4;
 import java.util.HashMap;
 
 public class Main {
-    private static final HashMap<String, WeatherData> WEATHER_CACHE;
-
-    static {
-        WEATHER_CACHE = new HashMap<>();
-    }
+    private static final HashMap<String, WeatherData> WEATHER_CACHE = new HashMap<>();
 
     public static void main(String[] args) {
         updateWeather("Moscow", 25.0, 60.0);
@@ -29,11 +25,11 @@ public class Main {
         WeatherData weatherData = WEATHER_CACHE.get(city);
 
         if (weatherData != null) {
-            return weatherData; // Weather information for the city is already in the cache
+            return weatherData;
         } else {
             weatherData = WeatherService.getWeatherData(city);
             if (weatherData != null) {
-                WEATHER_CACHE.put(city, weatherData); // Save weather information to the cache
+                WEATHER_CACHE.put(city, weatherData);
             }
             return weatherData;
         }
