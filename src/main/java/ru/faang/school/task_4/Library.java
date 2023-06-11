@@ -1,6 +1,6 @@
 package ru.faang.school.task_4;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -8,18 +8,18 @@ public class Library {
 
     private int shelfQuantity;
 
-    private Map<Book, Integer> books = new LinkedHashMap<>();
+    private Map<Book, Integer> books = new HashMap<>();
 
     public Library(int shelfQuantity) {
-        if(shelfQuantity > 0 && shelfQuantity < 25) {
+        if (shelfQuantity > 0 && shelfQuantity < 25) {
             this.shelfQuantity = shelfQuantity;
-        }else {
+        } else {
             System.out.println("Quantity of the shelves should be more than 0 or less then 25");
         }
     }
 
     public void addBook(Book book, int shelfNumber) {
-        if(shelfNumber <= shelfQuantity) {
+        if (shelfNumber <= shelfQuantity) {
             books.put(book, shelfNumber);
         }
     }
@@ -57,8 +57,8 @@ public class Library {
         return shelfNumber.orElse(-1);
     }
 
-    public int getBookShelfByAuthorAndYear(String author, int year){
-        Optional <Integer> shelfNumber = books.entrySet()
+    public int getBookShelfByAuthorAndYear(String author, int year) {
+        Optional<Integer> shelfNumber = books.entrySet()
                 .stream()
                 .filter(entry -> entry.getKey().getAuthor().equals(author) && entry.getKey().getYear() == year)
                 .map(Map.Entry::getValue)
@@ -67,7 +67,7 @@ public class Library {
         return shelfNumber.orElse(-1);
     }
 
-    public void printLibraryBooks(){
-        books.forEach((book,shelfNumber) -> System.out.println(book + " on the shelf №" + shelfNumber));
+    public void printLibraryBooks() {
+        books.forEach((book, shelfNumber) -> System.out.println(book + " on the shelf №" + shelfNumber));
     }
 }
