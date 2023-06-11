@@ -2,11 +2,11 @@ package ru.faang.school.hashmap.task_3.student;
 
 import java.util.Objects;
 
-public class GrupStudent {
+public class Grup {
     private final String faculty;
     private final int year;
 
-    public GrupStudent(String faculty, int year) {
+    public Grup(String faculty, int year) {
         this.faculty = faculty;
         this.year = year;
     }
@@ -15,13 +15,14 @@ public class GrupStudent {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GrupStudent that = (GrupStudent) o;
+        Grup that = (Grup) o;
         return year == that.year && Objects.equals(faculty, that.faculty);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(faculty, year);
+        int num = 31;
+        return num * Objects.hash(faculty, year);
     }
 
     @Override

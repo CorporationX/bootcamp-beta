@@ -5,19 +5,23 @@ import java.util.Objects;
 public class Student {
     private String name;
     private String faculty;
-    private int year;
+    private int course;
 
-    public Student(String name, String faculty, int year) {
+    public Student(String name, String faculty, int course) {
         this.name = name;
         this.faculty = faculty;
-        if (year < 1 || year > 4) {
-            throw new NumberFormatException();
-        }
-        this.year = year;
+        checkCourse(course);
+        this.course = course;
     }
 
-    public GrupStudent facultyYear() {
-        return new GrupStudent(faculty, year);
+    private void checkCourse(int course) {
+        if (course < 1 || course > 4) {
+            throw new IllegalArgumentException("Не допустимое значение курса студента. Студент может учиться на курсе 1-4");
+        }
+    }
+
+    public Grup getFacultyYear() {
+        return new Grup(faculty, course);
     }
 
     public String getName() {
@@ -37,14 +41,12 @@ public class Student {
     }
 
     public int getYear() {
-        return year;
+        return course;
     }
 
-    public void setYear(int year) {
-        if (year < 1 || year > 4) {
-            throw new NumberFormatException();
-        }
-        this.year = year;
+    public void setYear(int course) {
+        checkCourse(course);
+        this.course = course;
     }
 
     @Override
@@ -52,16 +54,16 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return year == student.year && Objects.equals(name, student.name) && Objects.equals(faculty, student.faculty);
+        return course == student.course && Objects.equals(name, student.name) && Objects.equals(faculty, student.faculty);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, faculty, year);
+        return Objects.hash(name, faculty, course);
     }
 
     @Override
     public String toString() {
-        return "Student: " + name + " faculty: " + faculty + " Курс: " + year;
+        return "Student: " + name + " faculty: " + faculty + " Курс: " + course;
     }
 }
