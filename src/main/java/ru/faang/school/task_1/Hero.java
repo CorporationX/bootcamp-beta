@@ -10,7 +10,7 @@ public class Hero {
     private final String faction;
     private final int experience;
     private final int level;
-    private final Map<Creature,Integer> army;
+    private final Map<Creature, Integer> army;
 
     public Hero(String name, String faction) {
         this.name = name;
@@ -21,7 +21,7 @@ public class Hero {
     }
 
     public void addCreature(Creature creature, int quantity) {
-        army.put(creature,quantity);
+        army.put(creature, quantity);
     }
 
 

@@ -16,13 +16,13 @@ public class Main {
         hero1.addCreature(pikeman1, pikeman1.quantity);
         hero1.addCreature(griffin1, griffin1.quantity);
         hero1.addCreature(swordsman1, swordsman1.quantity);
-        
+
 
         hero2.addCreature(pikeman2, pikeman2.quantity);
         hero2.addCreature(griffin2, griffin2.quantity);
         hero2.addCreature(angel2, angel2.quantity);
 
-        Battlefield battlefield = new Battlefield(hero1,hero2);
+        Battlefield battlefield = new Battlefield(hero1, hero2);
         Hero winner = battlefield.battle();
         System.out.println("Winner: " + winner.getName());
     }
