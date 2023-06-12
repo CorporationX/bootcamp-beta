@@ -1,22 +1,29 @@
 package ru.faang.school.hashmap.task_4;
 
 import ru.faang.school.hashmap.task_4.weatherData.WeatherData;
+import ru.faang.school.hashmap.task_4.weatherStation.WeatherStation;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
+    private static final WeatherStation weatherStation = new WeatherStation();
     private static final Map<String, WeatherData> cashWeather = new HashMap<>();
 
     public static void main(String[] args) {
-        System.out.println(weatherDataCash("Barnayl").toString());
-        cashWeather.put("Mamontovo", new WeatherData("Mamontovo", "23", 49));
-        cashWeather.put("Moscow", new WeatherData("Moscow", "25", 38));
-        removeWeatherData("Moscow");
-        allWeatherData();
+
+        getWeatherDataCash("Moscow");
+        getWeatherDataCash("Barnaul");
+        getWeatherDataCash("Tokio");
+        getWeatherDataCash("Amsterdam");
+        System.out.println(getWeatherDataCash("Barnaul"));
+        System.out.println();
+        removeWeatherData("Tokio");
+        getAllWeatherData();
+
     }
 
-    private static WeatherData weatherDataCash(String city) {
+    private static WeatherData getWeatherDataCash(String city) {
         if (cashWeather.containsKey(city)) {
             return cashWeather.get(city);
         }
@@ -25,13 +32,14 @@ public class Main {
     }
 
     private static void updateWeatherData(String city) {
-        cashWeather.put(city, new WeatherData("Barnayl", "34", 50));
+        cashWeather.put(city, weatherStation.getWeatherStation(city));
     }
 
     private static void removeWeatherData(String city) {
         cashWeather.remove(city);
     }
-    private static void allWeatherData() {
+
+    private static void getAllWeatherData() {
         cashWeather.forEach((key, value) -> System.out.println(value.toString()));
     }
 }

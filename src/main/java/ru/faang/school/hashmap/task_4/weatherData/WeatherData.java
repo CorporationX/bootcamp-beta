@@ -2,13 +2,21 @@ package ru.faang.school.hashmap.task_4.weatherData;
 
 public class WeatherData {
     private String city;
-    private String temperature;
+    private int temperature;
     private int humidity;
 
-    public WeatherData(String city, String temperature, int humidity) {
-        this.city = city;
-        this.temperature = temperature;
-        this.humidity = humidity;
+    public WeatherData(String city, int temperature, int humidity) {
+        checkWeatherData(city, temperature, humidity);
+    }
+
+    private void checkWeatherData(String city, int temperature, int humidity) {
+        if (city != null && (temperature > -80 && temperature < 80) && (humidity > 0 && humidity < 100)) {
+            this.city = city;
+            this.temperature = temperature;
+            this.humidity = humidity;
+        } else {
+            throw new IllegalArgumentException("температура должна быть не ниже 80 и выше 80");
+        }
     }
 
     public String getCity() {
@@ -19,11 +27,11 @@ public class WeatherData {
         this.city = city;
     }
 
-    public String getTemperature() {
+    public int getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(String temperature) {
+    public void setTemperature(int temperature) {
         this.temperature = temperature;
     }
 
