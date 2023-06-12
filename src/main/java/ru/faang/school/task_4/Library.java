@@ -2,6 +2,7 @@ package ru.faang.school.task_4;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class Library {
@@ -48,23 +49,19 @@ public class Library {
     }
 
     public int getBookShelfByTitle(String title) {
-        Optional<Integer> shelfNumber = books.entrySet()
+        return books.entrySet()
                 .stream()
                 .filter(entry -> entry.getKey().getTitle().equals(title))
                 .map(Map.Entry::getValue)
-                .findFirst();
-
-        return shelfNumber.orElse(-1);
+                .findFirst().orElseThrow(() -> new NoSuchElementException("Book not found"));
     }
 
     public int getBookShelfByAuthorAndYear(String author, int year) {
-        Optional<Integer> shelfNumber = books.entrySet()
+        return books.entrySet()
                 .stream()
                 .filter(entry -> entry.getKey().getAuthor().equals(author) && entry.getKey().getYear() == year)
                 .map(Map.Entry::getValue)
-                .findFirst();
-
-        return shelfNumber.orElse(-1);
+                .findFirst().orElseThrow(() -> new NoSuchElementException("Book not found"));
     }
 
     public void printLibraryBooks() {
