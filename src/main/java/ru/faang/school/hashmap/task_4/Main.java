@@ -12,30 +12,31 @@ public class Main {
 
     public static void main(String[] args) {
 
-        getWeatherDataCash("Moscow");
-        getWeatherDataCash("Barnaul");
-        getWeatherDataCash("Tokio");
-        getWeatherDataCash("Amsterdam");
-        System.out.println(getWeatherDataCash("Barnaul"));
+        getWeather("Moscow");
+        getWeather("Barnaul");
+        getWeather("Tokio");
+        getWeather("Amsterdam");
+        System.out.println(getWeather("Barnaul"));
         System.out.println();
-        removeWeatherData("Tokio");
+        removeWeather("Tokio");
         getAllWeatherData();
 
     }
 
-    private static WeatherData getWeatherDataCash(String city) {
+    private static WeatherData getWeather(String city) {
         if (cashWeather.containsKey(city)) {
             return cashWeather.get(city);
+        } else {
+            updateWeather(city);
         }
-        updateWeatherData(city);
         return cashWeather.get(city);
     }
 
-    private static void updateWeatherData(String city) {
+    private static void updateWeather(String city) {
         cashWeather.put(city, weatherStation.getWeatherStation(city));
     }
 
-    private static void removeWeatherData(String city) {
+    private static void removeWeather(String city) {
         cashWeather.remove(city);
     }
 
