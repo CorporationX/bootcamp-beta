@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 public class Student {
 
     private static final List<String> FACULTY_LIST = Arrays.asList("Computer Science","Computer Engineering", "Information Systems", "Information Science");
-    private static final List<String> UNIVERSITY_YEARS = Arrays.asList("1st year","2nd year","3d year");
+    private static final List<String> UNIVERSITY_YEARS = Arrays.asList("1st year","2nd year","3rd year");
     private String name;
     private String faculty;
     private String year;
